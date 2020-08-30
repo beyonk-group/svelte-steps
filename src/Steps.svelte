@@ -17,6 +17,8 @@
 	import Step from './Step.svelte'
 	import { steps } from './stores.js'
 	
-	export let theme = {}
+	export let theme = [
+		{ name: 'complete', value: { r: 6, g: 160, b: 146 } }
+	]
 	export let current = 0
 </script>

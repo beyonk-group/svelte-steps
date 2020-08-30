@@ -8,24 +8,33 @@
 
 Svelte Steps component
 
-## Usage
+## Demo
 
 ```
-<Steps {steps} {theme} />
+npm i && npm run dev
+```
+
+## Usage
+
+Documentation is a WIP. See the `example` directory for usage.
+
+```
+<Steps {current} {theme} />
 
 <script>
-	import Pip from './Pip.svelte'
-	import Steps from './Steps.svelte'
+	import { Steps, setup } from './Steps.svelte'
 	import { UserIcon, CreditCardIcon, BriefcaseIcon } from 'svelte-feather-icons'
 	
-	const steps = [
-		{ name: 'About You', complete: true, icon: UserIcon },
-		{ name: 'Payment', complete: false, icon: CreditCardIcon },
-		{ name: 'Confirmation', complete: false, icon: BriefcaseIcon }
-	]
+	setup([
+		{ name: 'About You', icon: UserIcon },
+		{ name: 'Payment', icon: CreditCardIcon },
+		{ name: 'Confirmation', icon: BriefcaseIcon }
+	])
 	
 	const theme = [
 		{ name: 'complete', value: { r: 6, g: 160, b: 146 } }
 	]
+
+	let current = 0
 </script>
 ```
