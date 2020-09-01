@@ -60,3 +60,6 @@ To change the step, set the value of `current`.
 </script>
 ```
 
+## Events
+
+The step icons dispatch a `step` event when clicked, and the event's `details.step` contains the index of the step which was clicked.
