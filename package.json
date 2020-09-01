@@ -6,10 +6,14 @@
   "scripts": {
     "dev": "WATCH=true nollup -c --hot --port 5000 --content-base ./public",
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src"
   },
   "devDependencies": {
+    "@beyonk/eslint-config": "^4.2.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
+    "eslint": "^7.8.1",
+    "eslint-plugin-svelte3": "^2.7.3",
     "nollup": "^0.13.9",
     "rollup": "^2.26.6",
     "rollup-plugin-hot": "^0.1.0",
@@ -17,6 +21,9 @@
     "rollup-plugin-svelte-hot": "^0.10.0",
     "svelte": "^3.24.1",
     "svelte-feather-icons": "^3.2.2"
+  },
+  "eslintConfig": {
+    "extends": "@beyonk/eslint-config/svelte"
   },
   "keywords": [
     "svelte"

@@ -28,7 +28,7 @@
 	const dispatch = createEventDispatcher()
 	
 	export let theme = [
-		{ name: 'complete', value: { r: 6, g: 160, b: 146 } }
+	  { name: 'complete', value: { r: 6, g: 160, b: 146 } }
 	]
 
 	export let current = 0

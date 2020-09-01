@@ -112,10 +112,10 @@
 	export let theme
 	
 	onMount(() => {
-		theme.forEach(({ name, value }) => {
-			const { r, g, b } = value
-			document.documentElement.style.setProperty(`--bos-steps-c-${name}`, `rgba(${r}, ${g}, ${b}, 1)`)
-			document.documentElement.style.setProperty(`--bos-steps-c-${name}-lighter`, `rgba(${r}, ${g}, ${b}, 0.7)`)
-		})
+	  theme.forEach(({ name, value }) => {
+	    const { r, g, b } = value
+	    document.documentElement.style.setProperty(`--bos-steps-c-${name}`, `rgba(${r}, ${g}, ${b}, 1)`)
+	    document.documentElement.style.setProperty(`--bos-steps-c-${name}-lighter`, `rgba(${r}, ${g}, ${b}, 0.7)`)
+	  })
 	})
 </script>
