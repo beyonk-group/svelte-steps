@@ -14,15 +14,36 @@ Svelte Steps component
 npm i && npm run dev
 ```
 
+## About
+
+Demonstrates progress in a multi-step process in your application, such as a payment flow.
+
+* Current step is denoted by the `current` variabble
+* If the current step is the last step, the steps component shows as fully complete.
+
 ## Usage
 
-Documentation is a WIP. See the `example` directory for usage.
+Install the library
+
+```
+npm i --save-dev @beyonk/svelte-steps
+```
+
+See the `example` directory for an example.
+
+1. Import the `Steps` component and the `setup` function from the library.
+1. Configure the `Steps` component by passing an array of step names and icons
+1. Configure the `theme` option by setting an rgb colour value for the `complete` theme variable
+1. Set the current step by passing it's array index. Usually 0.
+1. Add the `<Steps>` component to your page, and pass it the theme, and the current attributes.
+
+To change the step, set the value of `current`.
 
 ```
 <Steps {current} {theme} />
 
 <script>
-	import { Steps, setup } from './Steps.svelte'
+	import { Steps, setup } from '@beyonk/svelte-steps'
 	import { UserIcon, CreditCardIcon, BriefcaseIcon } from 'svelte-feather-icons'
 	
 	setup([
@@ -38,3 +59,4 @@ Documentation is a WIP. See the `example` directory for usage.
 	let current = 0
 </script>
 ```
+

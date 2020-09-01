@@ -1,6 +1,12 @@
 <ol>
 	{#each $steps as { name, icon }, i (i)}
-	<Step {theme} {name} {icon} complete={current > i} current={current === i} />
+	<Step
+		{theme}
+		{name}
+		{icon}
+		complete={current === $steps.length || current > i}
+		current={current !== $steps.length && current === i}
+	/>
 	{/each}
 </ol>
 
@@ -20,5 +26,6 @@
 	export let theme = [
 		{ name: 'complete', value: { r: 6, g: 160, b: 146 } }
 	]
+
 	export let current = 0
 </script>
