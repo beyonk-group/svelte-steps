@@ -4,8 +4,8 @@
 		{theme}
 		{name}
 		{icon}
-		complete={current === $steps.length || current > i}
-		current={current !== $steps.length && current === i}
+		complete={current === $steps.length - 1 || current > i}
+		current={current !== $steps.length - 1 && current === i}
 		on:click={() => { dispatch('step', { step: i }) }}
 	/>
 	{/each}
