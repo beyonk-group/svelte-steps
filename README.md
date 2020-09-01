@@ -10,6 +10,8 @@ Svelte Steps component
 
 ## Demo
 
+A [hosted demo exists](https://svelte.dev/repl/c3a67f7c8df047f484a5dd717ac59f16?version=3.24.1)
+
 ```
 npm i && npm run dev
 ```
