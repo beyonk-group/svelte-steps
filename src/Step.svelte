@@ -63,7 +63,8 @@
 		flex: 1;
 	}
 	
-	.block.complete .stepper.left {
+	.block.complete .stepper.left,
+	.block.current .stepper.left {
 		background-color: var(--bos-steps-c-complete);
 	}
 	
