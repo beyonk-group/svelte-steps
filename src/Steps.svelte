@@ -4,8 +4,7 @@
 		{theme}
 		{name}
 		{icon}
-		complete={current === $steps.length - 1 || current > i}
-		current={current !== $steps.length - 1 && current === i}
+		position={i}
 		on:click={() => { dispatch('step', { step: i }) }}
 	/>
 	{/each}
@@ -22,7 +21,7 @@
 
 <script>
 	import Step from './Step.svelte'
-	import { steps } from './stores.js'
+	import { steps, current } from './stores.js'
 	import { createEventDispatcher } from 'svelte'
 
 	const dispatch = createEventDispatcher()
@@ -30,6 +29,4 @@
 	export let theme = [
 	  { name: 'complete', value: { r: 6, g: 160, b: 146 } }
 	]
-
-	export let current = 0
 </script>

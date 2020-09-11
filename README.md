@@ -39,13 +39,11 @@ See the `example` directory for an example.
 1. Set the current step by passing it's array index. Usually 0.
 1. Add the `<Steps>` component to your page, and pass it the theme, and the current attributes.
 
-To change the step, set the value of `current`.
-
 ```
-<Steps {current} {theme} />
+<Steps {theme} />
 
 <script>
-	import { Steps, setup } from '@beyonk/svelte-steps'
+	import { Steps, setup, current } from '@beyonk/svelte-steps'
 	import { UserIcon, CreditCardIcon, BriefcaseIcon } from 'svelte-feather-icons'
 	
 	setup([
@@ -57,8 +55,78 @@ To change the step, set the value of `current`.
 	const theme = [
 		{ name: 'complete', value: { r: 6, g: 160, b: 146 } }
 	]
+</script>
+```
 
-	let current = 0
+## API
+
+### Change Step
+
+To change the step, set the value of the `current` store.
+
+```
+<Steps {theme} />
+
+<script>
+	import { current } from '@beyonk/svelte-steps'
+	
+	$current = 3 // or current.set(3)
+</script>
+```
+
+### Add a Step dynamically
+
+#### At a specified position
+
+To add a new step, pass it to the add method:
+
+`addStep(step, position)`
+
+```
+<script>
+	import { addStep } from '@beyonk/svelte-steps'
+	import { StarIcon } from 'svelte-feather-icons'
+	
+	addStep({ name: 'New Step', icon: StarIcon }, 2)
+</script>
+```
+
+#### At the current position
+
+To add a new step at the current position, don't pass the position attribute.
+
+`addStep(step)`
+
+```
+<script>
+	import { addStep } from '@beyonk/svelte-steps'
+	import { StarIcon } from 'svelte-feather-icons'
+	
+	addStep({ name: 'New Step', icon: StarIcon })
+</script>
+```
+
+### Get Total Steps
+
+The total store contains the total number of steps.
+
+```
+Total Steps: {$total}
+
+<script>
+	import { total } from '@beyonk/svelte-steps'
+</script>
+```
+
+### Get Current Steps
+
+The current store contains the current step.
+
+```
+Current Steps: {$current}
+
+<script>
+	import { current } from '@beyonk/svelte-steps'
 </script>
 ```
 

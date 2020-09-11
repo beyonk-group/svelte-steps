@@ -1,5 +1,5 @@
 <li>
-	<div class="block" class:complete class:current>
+	<div class="block" class:complete={isComplete} class:current={isCurrent}>
 		<div class="stepper left"></div>
 		<div class="icon">
 			<svelte:component this={icon} />
@@ -105,13 +105,16 @@
 
 <script>
 	import { onMount } from 'svelte'
+	import { current, steps } from './stores.js'
 	
 	export let name
 	export let icon
-	export let complete
-	export let current
 	export let theme
-	
+	export let position
+
+	$: isCurrent = $current !== $steps.length - 1 && $current === position
+	$: isComplete = $current === $steps.length - 1 || $current > position
+
 	onMount(() => {
 	  theme.forEach(({ name, value }) => {
 	    const { r, g, b } = value

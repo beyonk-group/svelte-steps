@@ -1,7 +1,10 @@
 import Steps from './Steps.svelte'
-import { setup } from './stores.js'
+import { setup, current, addStep, total } from './stores.js'
 
 export {
   Steps,
-  setup
+  setup,
+  addStep,
+  current,
+  total
 }
