@@ -21,7 +21,7 @@
 
 <script>
 	import Step from './Step.svelte'
-	import { steps, current } from './stores.js'
+	import { steps } from './stores.js'
 	import { createEventDispatcher } from 'svelte'
 
 	const dispatch = createEventDispatcher()

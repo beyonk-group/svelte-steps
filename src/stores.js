@@ -11,7 +11,7 @@ function setup (value) {
 function addStep (step, position) {
   const pos = position === undefined ? get(current) : position
   steps.update(s => {
-    const orig = [ ...s]
+    const orig = [ ...s ]
     orig.splice(pos, 0, step)
     return orig
   })
@@ -19,7 +19,7 @@ function addStep (step, position) {
 
 function removeStep (position) {
   steps.update(s => {
-    const orig = [ ...s]
+    const orig = [ ...s ]
     orig.splice(position, 1)
     return orig
   })
