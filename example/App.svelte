@@ -1,5 +1,5 @@
 <script>
-  import { Steps, setup, current, addStep, total } from '../src/index.js'
+  import { Steps, setup, current, addStep, removeStep, total } from '../src/index.js'
   import { UserIcon, CreditCardIcon, BriefcaseIcon, StarIcon } from 'svelte-feather-icons'
 	
 	const theme = [
@@ -13,6 +13,7 @@
   ])
 
   let newStepPos = 1
+  let removeStepPos = 1
 </script>
 
 <section>
@@ -23,10 +24,16 @@
   <div>
     <button class="button" on:click={() => $current = Math.max($current - 1, 0)}>Back</button>
     <div class="button">
-      <button on:click={addStep({ name: 'New Step', icon: StarIcon }, newStepPos)}>
+      <button on:click={() => addStep({ name: 'New Step', icon: StarIcon }, newStepPos)}>
       Add Step at
       </button>
       <input type="number" bind:value={newStepPos} />
+    </div>
+    <div class="button">
+      <button on:click={() => removeStep(removeStepPos)}>
+      Remove Step at
+      </button>
+      <input type="number" bind:value={removeStepPos} />
     </div>
     <button class="button" on:click={() => $current = Math.min($current + 1, $total - 1)}>Next</button>
   </div>

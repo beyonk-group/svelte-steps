@@ -17,10 +17,19 @@ function addStep (step, position) {
   })
 }
 
+function removeStep (position) {
+  steps.update(s => {
+    const orig = [ ...s]
+    orig.splice(position, 1)
+    return orig
+  })
+}
+
 export {
   setup,
   steps,
   current,
   addStep,
+  removeStep,
   total
 }

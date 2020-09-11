@@ -78,7 +78,7 @@ To change the step, set the value of the `current` store.
 
 #### At a specified position
 
-To add a new step, pass it to the add method:
+To add a new step, pass it to the `addStep` method:
 
 `addStep(step, position)`
 
@@ -103,6 +103,22 @@ To add a new step at the current position, don't pass the position attribute.
 	import { StarIcon } from 'svelte-feather-icons'
 	
 	addStep({ name: 'New Step', icon: StarIcon })
+</script>
+```
+
+### Remove a Step dynamically
+
+#### At a specified position
+
+To add a new step, use the `removeStep` function
+
+`removeStep(position)`
+
+```
+<script>
+	import { removeStep } from '@beyonk/svelte-steps'
+	
+	removeStep(2)
 </script>
 ```
 
