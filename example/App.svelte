@@ -1,5 +1,5 @@
 <script>
-  import { Steps, setup, current, addStep, removeStep, total } from '../src/index.js'
+  import { Steps, Pages, setup, current, addStep, removeStep, total } from '../src/index.js'
   import { UserIcon, CreditCardIcon, BriefcaseIcon, StarIcon } from 'svelte-feather-icons'
 	
 	const theme = [
@@ -19,7 +19,7 @@
 <section>
   <Steps />
 
-  <p>Total Steps: {$total}</p>
+  <p>Step: <Pages /></p>
 
   <div>
     <button class="button" on:click={() => $current = Math.max($current - 1, 0)}>Back</button>

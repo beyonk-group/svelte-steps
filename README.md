@@ -31,6 +31,8 @@ Install the library
 npm i --save-dev @beyonk/svelte-steps
 ```
 
+### Steps Component
+
 See the `example` directory for an example.
 
 1. Import the `Steps` component and the `setup` function from the library.
@@ -57,6 +59,10 @@ See the `example` directory for an example.
 	]
 </script>
 ```
+
+### Pages Component
+
+The pages component is a mini steps component for pages where space is of the essence.
 
 ## API
 
