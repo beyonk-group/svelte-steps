@@ -52,7 +52,7 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		flex: 1;
+		flex: 1 0 auto;
 		width: 100%;
 	}
 	
