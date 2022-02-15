@@ -31,7 +31,7 @@ Demonstrates progress in a multi-step process in your application, such as a pay
 
 Install the library
 
-```
+```sh
 npm i --save-dev @beyonk/svelte-steps
 ```
 
@@ -45,7 +45,7 @@ See the `example` directory for an example.
 1. Set the current step by passing it's array index. Usually 0.
 1. Add the `<Steps>` component to your page, and pass it the theme, and the current attributes.
 
-```
+```svelte
 <Steps {theme} />
 
 <script>
@@ -74,7 +74,7 @@ The pages component is a mini steps component for pages where space is of the es
 
 To go to a specific step, call to() passing the id of the desired step
 
-```
+```svelte
 <Steps {theme} />
 
 <script>
@@ -84,9 +84,22 @@ To go to a specific step, call to() passing the id of the desired step
 </script>
 ```
 
+The `$step` store gives you the ability to implement next and back buttons trivially:
+
+```svelte
+<Steps {theme} />
+
+<button on:click={() => to($step.next)}>Next Step</button>
+<button on:click={() => to($step.previous)}>Previous Step</button>
+
+<script>
+	import { to, step } from '@beyonk/svelte-steps'
+</script>
+```
+
 ### Add a Step dynamically
 
-#### At a specified position
+#### After a specified position
 
 To add a new step, pass it to the `addStep` method:
 
@@ -95,7 +108,7 @@ To add a new step, pass it to the `addStep` method:
 
 `addStep(step, after, id)`
 
-```
+```svelte
 <script>
 	import { addStep } from '@beyonk/svelte-steps'
 	import { StarIcon } from 'svelte-feather-icons'
@@ -104,13 +117,13 @@ To add a new step, pass it to the `addStep` method:
 </script>
 ```
 
-#### At the current position
+#### After the current position
 
 To add a new step at the current position, don't pass the position attribute.
 
 `addStep(step)`
 
-```
+```svelte
 <script>
 	import { addStep } from '@beyonk/svelte-steps'
 	import { StarIcon } from 'svelte-feather-icons'
@@ -125,7 +138,7 @@ To add a new step with an id, pass it as the third param
 
 `addStep(step, after, id)`
 
-```
+```svelte
 <script>
 	import { addStep } from '@beyonk/svelte-steps'
 	import { StarIcon } from 'svelte-feather-icons'
@@ -142,7 +155,7 @@ To add a new step, use the `removeStep` function, passing the id of the step to 
 
 `removeStep(id)`
 
-```
+```svelte
 <script>
 	import { removeStep } from '@beyonk/svelte-steps'
 	
@@ -154,7 +167,7 @@ To add a new step, use the `removeStep` function, passing the id of the step to 
 
 To determine if a step exists, query it by id
 
-```
+```svelte
 Step exists? {hasStep('my-step-id')}
 
 <script>
@@ -166,7 +179,7 @@ Step exists? {hasStep('my-step-id')}
 
 The step state import is called `step` and contains metadata about the steps:
 
-```
+```svelte
 Total Steps: {$step.total}
 Current Index: {$step.index}
 Current Step Name: {$step.name}
