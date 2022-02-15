@@ -1,11 +1,11 @@
 <ol>
-	{#each $steps as { name, icon }, i (i)}
+	{#each $steps as { id, name, icon }, i (i)}
 	<Step
 		{theme}
 		{name}
 		{icon}
 		position={i}
-		on:click={() => { dispatch('step', { step: i }) }}
+		on:click={() => { dispatch('step', { id, i }) }}
 	/>
 	{/each}
 </ol>

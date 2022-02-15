@@ -1,5 +1,5 @@
-<span class="current">{$current + 1}</span>
-<span class="total">{$total}</span>
+<span class="current">{$step.index + 1}</span>
+<span class="total">{$step.total}</span>
 
 <style>
 	.current::after {
@@ -9,5 +9,5 @@
 </style>
 
 <script>
-	import { current, total } from './stores.js'
+	import { step } from './stores.js'
 </script>

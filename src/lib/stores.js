@@ -1,11 +1,19 @@
 import { writable, derived, get } from 'svelte/store'
 
 const steps = writable([])
-const current = writable(0)
-const total = derived(steps, $steps => $steps.length)
+const c = writable(0)
+const step = derived([ c, steps ], ([ $c, $steps ]) => ({
+  index: $c,
+  id: $steps[$c].id,
+  name: $steps[$c].name,
+  total: $steps.length,
+  isLast: $c === $steps.length - 1,
+  isFirst: $c === 0
+}))
 
 function setup (value) {
-  steps.set(value.map(v => ({ id: generateId(), ...v })))
+  const built = value.map(v => ({ id: generateId(), ...v }))
+  steps.set(built)
 }
 
 function hasStep (id) {
@@ -21,7 +29,8 @@ function addStep (step, after = false, id = generateId()) {
   const newStep = { ...step, id }
   steps.update(s => {
     const orig = [ ...s ]
-    const position = orig.findIndex(o => o.id === after)
+    const whereId = after || get(c)
+    const position = orig.findIndex(o => o.id === whereId)
     orig.splice(position + 1, 0, newStep)
     return orig
   })
@@ -36,12 +45,31 @@ function removeStep (id) {
   })
 }
 
+function next () {
+  const all = get(steps)
+  const curr = get(c)
+  const next = Math.min(curr + 1, all.length)
+  to(next)
+}
+
+function previous () {
+  const curr = get(c)
+  const next = Math.max(curr - 1, 0)
+  to(next)
+}
+
+function to (pos) {
+  c.set(pos)
+}
+
 export {
   setup,
   steps,
-  current,
   addStep,
   removeStep,
   hasStep,
-  total
+  next,
+  previous,
+  to,
+  step
 }

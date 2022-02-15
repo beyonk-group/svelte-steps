@@ -1,5 +1,5 @@
 <script>
-  import { Steps, Pages, setup, current, addStep, removeStep, total } from '$lib'
+  import { Steps, Pages, setup, step, next, previous, addStep, removeStep } from '$lib'
   import { steps } from '$lib/stores.js'
   import { UserIcon, CreditCardIcon, BriefcaseIcon, StarIcon } from 'svelte-feather-icons'
 	
@@ -22,7 +22,7 @@
   <p>Step: <Pages /></p>
 
   <div>
-    <button class="button" on:click={() => $current = Math.max($current - 1, 0)}>Back</button>
+    <button class="button" on:click={previous}>Back</button>
     <div class="button">
       <button on:click={() => addStep({ name: 'New Step', icon: StarIcon }, after)}>
       Add Step after
@@ -43,7 +43,7 @@
         {/each}
       </select>
     </div>
-    <button class="button" on:click={() => $current = Math.min($current + 1, $total - 1)}>Next</button>
+    <button class="button" on:click={next}>Next</button>
   </div>
 </section>
 

@@ -105,15 +105,15 @@
 
 <script>
 	import { onMount } from 'svelte'
-	import { current, steps } from './stores.js'
+	import { step } from './stores.js'
 	
 	export let name
 	export let icon
 	export let theme
 	export let position
 
-	$: isCurrent = $current !== $steps.length - 1 && $current === position
-	$: isComplete = $current === $steps.length - 1 || $current > position
+	$: isCurrent = !$step.isLast && $step.index === position
+	$: isComplete = $step.isLast || $step.index > position
 
 	onMount(() => {
 	  theme.forEach(({ name, value }) => {
