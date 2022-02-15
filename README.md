@@ -17,14 +17,14 @@ Svelte Steps component
 A [hosted demo exists](https://svelte.dev/repl/c3a67f7c8df047f484a5dd717ac59f16?version=3.24.1)
 
 ```
-npm i && npm run dev
+pnpm i && pnpm dev
 ```
 
 ## About
 
 Demonstrates progress in a multi-step process in your application, such as a payment flow.
 
-* Current step is denoted by the `current` variabble
+* Current step info is denoted by the `step` store
 * If the current step is the last step, the steps component shows as fully complete.
 
 ## Usage
