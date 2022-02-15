@@ -100,9 +100,9 @@ To decrement the step, call previous()
 </script>
 ```
 
-#### Go to specific sep
+#### Go to specific step
 
-To go to a specific step, call to()
+To go to a specific step, call to() passing the id of the desired step
 
 ```
 <Steps {theme} />
@@ -110,7 +110,7 @@ To go to a specific step, call to()
 <script>
 	import { to } from '@beyonk/svelte-steps'
 	
-	to()
+	to('second-step')
 </script>
 ```
 
@@ -130,7 +130,7 @@ To add a new step, pass it to the `addStep` method:
 	import { addStep } from '@beyonk/svelte-steps'
 	import { StarIcon } from 'svelte-feather-icons'
 	
-	addStep({ name: 'New Step', icon: StarIcon }, 2)
+	addStep({ name: 'Thank You!', icon: StarIcon }, 'payment')
 </script>
 ```
 
@@ -146,6 +146,21 @@ To add a new step at the current position, don't pass the position attribute.
 	import { StarIcon } from 'svelte-feather-icons'
 	
 	addStep({ name: 'New Step', icon: StarIcon })
+</script>
+```
+
+#### With a custom id
+
+To add a new step with an id, pass it as the third param
+
+`addStep(step, after, id)`
+
+```
+<script>
+	import { addStep } from '@beyonk/svelte-steps'
+	import { StarIcon } from 'svelte-feather-icons'
+	
+	addStep({ name: 'New Step', icon: StarIcon }, 'payment', 'foo123')
 </script>
 ```
 

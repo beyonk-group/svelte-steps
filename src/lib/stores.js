@@ -58,7 +58,9 @@ function previous () {
   to(next)
 }
 
-function to (pos) {
+function to (id) {
+  const all = get(steps)
+  const pos = all.findIndex(s => s.id === id)
   c.set(pos)
 }
 
