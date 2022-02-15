@@ -1,6 +1,6 @@
 <script>
-  import { Steps, Pages, setup, step, next, previous, addStep, removeStep } from '$lib'
-  import { steps } from '$lib/stores.js'
+  import { Steps, Pages, setup, step, addStep, removeStep } from '$lib'
+  import { steps, to } from '$lib/stores.js'
   import { UserIcon, CreditCardIcon, BriefcaseIcon, StarIcon } from 'svelte-feather-icons'
 	
 	const theme = [
@@ -8,9 +8,9 @@
 	]
 
   setup([
-		{ name: 'About You', icon: UserIcon },
-		{ name: 'Payment', icon: CreditCardIcon },
-    { name: 'Confirmation', icon: BriefcaseIcon }
+		{ id: 'about', name: 'About You', icon: UserIcon },
+		{ id: 'payment', name: 'Payment', icon: CreditCardIcon },
+    { id: 'confirmation', name: 'Confirmation', icon: BriefcaseIcon }
   ])
 
   let after
@@ -21,8 +21,12 @@
 
   <p>Step: <Pages /></p>
 
+  <pre>
+    {JSON.stringify($step, null, 2)}
+  </pre>
+
   <div>
-    <button class="button" on:click={previous}>Back</button>
+    <button class="button" on:click={() => to($step.previous)}>Back</button>
     <div class="button">
       <button on:click={() => addStep({ name: 'New Step', icon: StarIcon }, after)}>
       Add Step after
@@ -43,7 +47,7 @@
         {/each}
       </select>
     </div>
-    <button class="button" on:click={next}>Next</button>
+    <button class="button" on:click={() => to($step.next)}>Next</button>
   </div>
 </section>
 
@@ -81,12 +85,5 @@
   .button > button {
     background-color: transparent;
     border: 0;
-  }
-
-  input {
-    height: 20px;
-    width: 30px;
-    text-align: center;
-    font-weight: bold;
   }
 </style>

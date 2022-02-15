@@ -1,6 +1,6 @@
 import Steps from './Steps.svelte'
 import Pages from './Pages.svelte'
-import { setup, step, addStep, removeStep, hasStep, next, previous, to } from './stores.js'
+import { setup, step, addStep, removeStep, hasStep, to } from './stores.js'
 
 export {
   Steps,
@@ -9,8 +9,6 @@ export {
   addStep,
   removeStep,
   hasStep,
-  next,
-  previous,
   to,
   step
 }

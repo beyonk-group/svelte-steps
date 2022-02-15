@@ -72,36 +72,6 @@ The pages component is a mini steps component for pages where space is of the es
 
 ### Change Step
 
-#### Increment
-
-To increment the step, call next()
-
-```
-<Steps {theme} />
-
-<script>
-	import { next } from '@beyonk/svelte-steps'
-	
-	next()
-</script>
-```
-
-#### Decrement
-
-To decrement the step, call previous()
-
-```
-<Steps {theme} />
-
-<script>
-	import { previous } from '@beyonk/svelte-steps'
-	
-	previous()
-</script>
-```
-
-#### Go to specific step
-
 To go to a specific step, call to() passing the id of the desired step
 
 ```
@@ -203,6 +173,8 @@ Current Step Name: {$step.name}
 Current Step Id: {$step.id}
 Is Last Step? {$step.isLast}
 Is First Step? {$step.isFirst}
+Next step id: {$step.next} (false if last step)
+Previous step id: {$step.previous} (false if first step)
 
 <script>
 	import { step } from '@beyonk/svelte-steps'

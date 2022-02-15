@@ -2,14 +2,23 @@ import { writable, derived, get } from 'svelte/store'
 
 const steps = writable([])
 const c = writable(0)
-const step = derived([ c, steps ], ([ $c, $steps ]) => ({
-  index: $c,
-  id: $steps[$c].id,
-  name: $steps[$c].name,
-  total: $steps.length,
-  isLast: $c === $steps.length - 1,
-  isFirst: $c === 0
-}))
+const step = derived([ c, steps ], ([ $c, $steps ]) => {
+  const nextIndex = Math.min(Math.max(0, $steps.length - 1), $c + 1)
+  const next = nextIndex === $c ? false : $steps[nextIndex].id
+  const previous = $c === 0 ? false : $steps[$c - 1].id
+  const currentStep = $steps[$c] || {}
+
+  return {
+    index: $c,
+    id: currentStep.id,
+    name: currentStep.name,
+    total: $steps.length,
+    isLast: $c === $steps.length - 1,
+    isFirst: $c === 0,
+    next,
+    previous
+  }
+})
 
 function setup (value) {
   const built = value.map(v => ({ id: generateId(), ...v }))
@@ -45,23 +54,10 @@ function removeStep (id) {
   })
 }
 
-function next () {
-  const all = get(steps)
-  const curr = get(c)
-  const next = Math.min(curr + 1, all.length)
-  to(next)
-}
-
-function previous () {
-  const curr = get(c)
-  const next = Math.max(curr - 1, 0)
-  to(next)
-}
-
 function to (id) {
   const all = get(steps)
   const pos = all.findIndex(s => s.id === id)
-  c.set(pos)
+  pos > -1 && c.set(pos)
 }
 
 export {
@@ -70,8 +66,6 @@ export {
   addStep,
   removeStep,
   hasStep,
-  next,
-  previous,
   to,
   step
 }
