@@ -1,0 +1,6 @@
+{ 
+  "extends": "@beyonk/eslint-config",
+  "parserOptions": {
+    "ecmaVersion": 2020
+  }
+} 
