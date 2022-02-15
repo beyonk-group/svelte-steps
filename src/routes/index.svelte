@@ -1,5 +1,6 @@
 <script>
-  import { Steps, Pages, setup, current, addStep, removeStep, total } from '../src/index.js'
+  import { Steps, Pages, setup, current, addStep, removeStep, total } from '$lib'
+  import { steps } from '$lib/stores.js'
   import { UserIcon, CreditCardIcon, BriefcaseIcon, StarIcon } from 'svelte-feather-icons'
 	
 	const theme = [
@@ -12,28 +13,35 @@
     { name: 'Confirmation', icon: BriefcaseIcon }
   ])
 
-  let newStepPos = 1
-  let removeStepPos = 1
+  let after
 </script>
 
 <section>
-  <Steps />
+  <Steps {theme} />
 
   <p>Step: <Pages /></p>
 
   <div>
     <button class="button" on:click={() => $current = Math.max($current - 1, 0)}>Back</button>
     <div class="button">
-      <button on:click={() => addStep({ name: 'New Step', icon: StarIcon }, newStepPos)}>
-      Add Step at
+      <button on:click={() => addStep({ name: 'New Step', icon: StarIcon }, after)}>
+      Add Step after
       </button>
-      <input type="number" bind:value={newStepPos} />
+      <select bind:value={after}>
+        {#each $steps as { name, id }}
+        <option value={id}>{name}</option>
+        {/each}
+      </select>
     </div>
     <div class="button">
-      <button on:click={() => removeStep(removeStepPos)}>
+      <button on:click={() => removeStep(after)}>
       Remove Step at
       </button>
-      <input type="number" bind:value={removeStepPos} />
+      <select bind:value={after}>
+        {#each $steps as { name, id }}
+        <option value={id}>{name}</option>
+        {/each}
+      </select>
     </div>
     <button class="button" on:click={() => $current = Math.min($current + 1, $total - 1)}>Next</button>
   </div>

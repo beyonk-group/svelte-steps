@@ -1,4 +1,8 @@
 .DS_Store
 node_modules
-/dist/
-public/build
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
